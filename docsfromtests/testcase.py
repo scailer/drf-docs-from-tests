@@ -16,7 +16,8 @@ COLLECTOR = DocCollector()
 
 class DocDiscoverRunner(DiscoverRunner):
     def run_tests(self, test_labels, extra_tests=None, **kwargs):
-        ret = super(DocDiscoverRunner, self).run_tests(test_labels, extra_tests=None, **kwargs)
+        ret = super(DocDiscoverRunner, self).run_tests(
+            test_labels, extra_tests=None, **kwargs)
         COLLECTOR.render()
         return ret
 
@@ -30,7 +31,7 @@ class DocAPIClient(APIClient):
         response = super(DocAPIClient, self).generic(
             method, path, data, content_type, **extra)
 
-        if response.status_code in (200, 201, 204, 400, 401):
+        if response.status_code in (200, 201, 204, 400, 401, 403, 404):
             content_type = response.request.get('CONTENT_TYPE', content_type)
             response.request['CONTENT_TYPE'] = content_type
 

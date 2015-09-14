@@ -60,3 +60,4 @@ target/
 *.sqlite3
 example/docs/*
 example/docsfromtests
+*.swp
